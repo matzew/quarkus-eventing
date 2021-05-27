@@ -1,0 +1,14 @@
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: kafka-source
+spec:
+  bootstrapServers:
+   - my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
+  topics:
+   - prices
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: webserver-display
